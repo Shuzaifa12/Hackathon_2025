@@ -8,18 +8,30 @@ import user from '@/app/assets/section1/profile.png';
 import { client } from '@/sanity/lib/client';
 import { urlFor } from '@/sanity/lib/image';
 
-const Section1 = () => {
+const Section2 = () => {
 
     const [wishlist, setWishlist] = useState<string[]>([]); // Product IDs
     const [recommendedcars, setRecommendedCars] = useState<any[]>([]); // All car data
+    const [visibleCount, setVisibleCount] = useState(4); // Number of cars to show initially
+    const [isLoading, setIsLoading] = useState<boolean>(true); // Loading state for data fetch
 
+    // RecommendedCar
     // Fetch popular cars data on component mount
-    useEffect(() => {
-    const fetchData = async () => {
-        const query = `*[_type == "RecommendedCar"]`;
-        const data = await client.fetch(query);
-        setRecommendedCars(data); // Set the fetched data
-    };
+      useEffect(() => {
+        const fetchData = async () => {
+          try {
+            // Query for popular cars from Sanity
+            const query = `*[_type == "RecommendedCar"]`;
+            const data = await client.fetch(query);
+            
+            console.log('Fetched Data:', data); // Debugging line to check if data is fetched
+            setRecommendedCars(data); // Set the fetched data
+          } catch (error) {
+            console.error('Failed to fetch popular cars data:', error);
+          } finally {
+            setIsLoading(false); // Set loading to false once fetch is done
+          }
+        };
 
     fetchData();
 
@@ -42,6 +54,16 @@ const Section1 = () => {
         });
     };
 
+    // Show loading spinner until data is fetched
+    if (isLoading) {
+    return <div className="text-center">Loading...</div>;
+    }
+
+    // Show more cars when "Show More" is clicked
+    const handleShowMore = () => {
+    setVisibleCount((prevCount) => prevCount + 4); // Load 4 more cars
+    };
+
   return (
     <div className='px-[40px] py-[32px] bg-[#F6F7F9]'>
 
@@ -57,7 +79,8 @@ const Section1 = () => {
 
         {/* this is the div in which cars listing is present */}
         <div className='my-2 w-fit mx-auto sm:mx-0 sm:w-full justify-center gap-8 flex flex-col sm:flex-row sm:flex-wrap sm:justify-between'>
-            {recommendedcars.map((r:any , index:number)=>(
+        {recommendedcars.length > 0 ? (
+            recommendedcars.slice(0 , visibleCount).map((r:any , index:number)=>(
 
                 <Link key={index}  href={`detailcars/recommendedcars/${r._id}`}>
 
@@ -118,11 +141,36 @@ const Section1 = () => {
 
                 </Link>
 
-            ))}
+            ))
+        ) : (
+            <p>No cars available at the moment.</p>
+        )}
           
         </div>
+
+        {/* Show More and Show Less buttons */}
+        <div className="flex justify-center mt-4 gap-4">
+            {visibleCount < recommendedcars.length && (
+                <button 
+                onClick={handleShowMore} 
+                className="bg-[#3563E9] text-white rounded-md px-6 py-2"
+                >
+                Show More
+                </button>
+            )}
+            
+            {visibleCount >= recommendedcars.length && (
+                <button 
+                onClick={() => setVisibleCount(4)} 
+                className="bg-gray-500 text-white rounded-md px-6 py-2"
+                >
+                Show Less
+                </button>
+            )}
+        </div>
+
     </div>
 )
 }
 
-export default Section1;
+export default Section2;

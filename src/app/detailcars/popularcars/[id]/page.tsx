@@ -21,8 +21,7 @@ export default async function dynamicpage(props: any) {
   }
 
   return (
-    <>
-    
+
     <div className="bg-[#F6F7F9] mx-auto p-4">
       {/* details div */}
       <div className='md:flex md:justify-between gap-2'>
@@ -39,7 +38,7 @@ export default async function dynamicpage(props: any) {
             </div>
         </div>
 
-            <div className='lg:flex items-center justify-between mt-2'>
+        <div className='lg:flex items-center justify-between mt-2'>
               <div className="w-[200px] lg:w-[230px] flex mx-auto lg:mx-0 my-2 lg:my-0" >
             <Image src={urlFor(car.image).url()} alt='loading' width={300} height={200} className="bg-[rgba(84,166,255,100%)] h-full rounded-xl bg-[url('/BG.png')] bg-cover bg-center relative p-6 w-[200px] lg:w-[230px]"></Image>
             </div>
@@ -47,7 +46,7 @@ export default async function dynamicpage(props: any) {
             <Image src={views3} alt='loading' width={150} height={200} className="w-[150px] lg:w-[180px] flex mx-auto lg:mx-0 my-2 lg:my-0"></Image>
             </div>
         </div>
-
+  
 
         <div className='mt-3 md:mt-0 md:w-[50%] p-4 bg-white flex flex-col justify-between'>
 
@@ -100,6 +99,6 @@ export default async function dynamicpage(props: any) {
       </div>
     </div>
 
-    </>
+
   );
 }

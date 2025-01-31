@@ -12,10 +12,10 @@ const Footer = () => {
 
             {/* div for title and paragraph */}
             <div className='md:w-[50%]'>
-                <div className='w-fit'>
+                <div className='w-fit mx-auto md:mx-0'>
                     <h1 className='text-[#3563E9] font-[PlusJakartaSans] font-bold text-[24px] uppercase'><Link href={"/"}>Morent</Link></h1>
                 </div>
-                <div className='sm:w-[292px] mt-4 md:mt-2 text-[rgba(19,19,19,0.6)]'>
+                <div className='text-center md:text-left md:w-[292px] mt-4 md:mt-2 text-[rgba(19,19,19,0.6)]'>
                     <p>Our vision is to provide convenience and help increase your sales business</p>
                 </div>
             </div>
@@ -41,7 +41,7 @@ const Footer = () => {
                         <li><Link href="#">Invite a friend</Link></li>
                     </ul>
                 </div>
-                <div className='w-fit mt-10 xm:mt-0'>
+                <div className='w-fit'>
                     <h1 className='font-semibold text-[20px]'>Socials</h1>
                     <ul className='font-medium text-[rgba(19,19,19,0.6)] mt-3 space-y-4'>
                         <li><Link href="#">Discord</Link></li>

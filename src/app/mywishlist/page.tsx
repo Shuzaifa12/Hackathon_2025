@@ -6,7 +6,7 @@ const WishlistPage = () => {
   const [wishlist, setWishlist] = useState<string[]>([]); // Product IDs
   const [wishlistItems, setWishlistItems] = useState<any[]>([]); // Full product data
 
-  // Load wishlist from localStorage and fetch product details
+  // Load wishlist from data storage and fetch product details
   useEffect(() => {
     const storedWishlist = localStorage.getItem("wishlist");
     if (storedWishlist) {
@@ -21,6 +21,7 @@ const WishlistPage = () => {
       fetchWishlistItems();
     }
   }, []);
+
 
   return (
     <div className="px-[40px] py-[32px] bg-[#F6F7F9]">
