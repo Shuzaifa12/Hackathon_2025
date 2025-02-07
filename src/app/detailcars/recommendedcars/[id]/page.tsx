@@ -52,8 +52,10 @@ export default async function dynamicpage(props: any) {
 
         <div className='mt-3 md:mt-0 md:w-[50%] p-4 bg-white flex flex-col justify-between rounded-md'>
 
-          <div>
+          <div className="lg:flex justify-between ">
             <h1 className="uppercase font-extrabold text-4xl text-[rgba(26,32,44,100%)]">{car.name}</h1>
+
+            <Link href={`/reviews/recommendedcars/${car._id}`}><button className='bg-[#3563E9] text-white rounded-md px-6 py-2 mt-3 lg:mt-0'>Reviews</button></Link>
           </div>
 
           <div className="my-4">

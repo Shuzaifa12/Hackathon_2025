@@ -20,6 +20,7 @@ const Section1 = () => {
         // Query for popular cars from Sanity
         const query = `*[_type == "Popularcar"]`;
         const data = await client.fetch(query);
+        console.log(data)
         setPopularCars(data); // Set the fetched data
       } catch (error) {
         console.error('Failed to fetch popular cars data:', error);
